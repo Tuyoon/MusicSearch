@@ -8,6 +8,8 @@
 
 #import "GetAPI.h"
 
+extern NSString *const kAPITermKey;
+
 @interface SearchAPI : GetAPI
 
 @end

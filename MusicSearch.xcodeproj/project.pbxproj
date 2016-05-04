@@ -18,6 +18,7 @@
 		042002331CDA887400A61399 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002321CDA887400A61399 /* API.m */; };
 		042002381CDA8AD900A61399 /* GetAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002351CDA8AD900A61399 /* GetAPI.m */; };
 		042002391CDA8AD900A61399 /* PostAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002371CDA8AD900A61399 /* PostAPI.m */; };
+		0420023C1CDA926000A61399 /* SearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420023B1CDA926000A61399 /* SearchAPI.m */; };
 		B585BFC1D1C3EAD52DBBF9DE /* libPods-MusicSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A171DCE9B17647512C030C3 /* libPods-MusicSearch.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		042002351CDA8AD900A61399 /* GetAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAPI.m; sourceTree = "<group>"; };
 		042002361CDA8AD900A61399 /* PostAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAPI.h; sourceTree = "<group>"; };
 		042002371CDA8AD900A61399 /* PostAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAPI.m; sourceTree = "<group>"; };
+		0420023A1CDA926000A61399 /* SearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAPI.h; sourceTree = "<group>"; };
+		0420023B1CDA926000A61399 /* SearchAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAPI.m; sourceTree = "<group>"; };
 		2F241C33D45826C8B5C210CC /* Pods-MusicSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.release.xcconfig"; sourceTree = "<group>"; };
 		5A171DCE9B17647512C030C3 /* libPods-MusicSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MusicSearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BBBC699E83B65B8B69B513 /* Pods-MusicSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 		0420022F1CDA885A00A61399 /* GET */ = {
 			isa = PBXGroup;
 			children = (
+				0420023A1CDA926000A61399 /* SearchAPI.h */,
+				0420023B1CDA926000A61399 /* SearchAPI.m */,
 			);
 			path = GET;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 			files = (
 				042002331CDA887400A61399 /* API.m in Sources */,
 				042002381CDA8AD900A61399 /* GetAPI.m in Sources */,
+				0420023C1CDA926000A61399 /* SearchAPI.m in Sources */,
 				042002201CDA80D900A61399 /* main.m in Sources */,
 				042002391CDA8AD900A61399 /* PostAPI.m in Sources */,
 				0420021E1CDA80D900A61399 /* AppDelegate.m in Sources */,

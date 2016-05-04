@@ -8,6 +8,20 @@
 
 #import "SearchAPI.h"
 
+NSString *const kAPITermKey = @"term";
+static NSString *const kAPISearchPath = @"search";
+
 @implementation SearchAPI
+
+- (NSString *)path {
+    return kAPISearchPath;
+}
+
+- (NSMutableDictionary *)parameters {
+    NSMutableDictionary *parameters = [super parameters];
+    parameters[kAPITermKey] = self.object[kAPITermKey];
+    
+    return parameters;
+}
 
 @end
