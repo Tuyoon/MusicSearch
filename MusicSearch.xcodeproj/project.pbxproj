@@ -15,6 +15,9 @@
 		042002281CDA81B600A61399 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042002261CDA81B600A61399 /* Main.storyboard */; };
 		0420022A1CDA81C700A61399 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042002291CDA81C700A61399 /* LaunchScreen.storyboard */; };
 		0420022C1CDA823800A61399 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0420022B1CDA823800A61399 /* Warnings.xcconfig */; };
+		042002331CDA887400A61399 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002321CDA887400A61399 /* API.m */; };
+		042002381CDA8AD900A61399 /* GetAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002351CDA8AD900A61399 /* GetAPI.m */; };
+		042002391CDA8AD900A61399 /* PostAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002371CDA8AD900A61399 /* PostAPI.m */; };
 		B585BFC1D1C3EAD52DBBF9DE /* libPods-MusicSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A171DCE9B17647512C030C3 /* libPods-MusicSearch.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,12 @@
 		042002261CDA81B600A61399 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		042002291CDA81C700A61399 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0420022B1CDA823800A61399 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
+		042002311CDA887400A61399 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		042002321CDA887400A61399 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		042002341CDA8AD900A61399 /* GetAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAPI.h; sourceTree = "<group>"; };
+		042002351CDA8AD900A61399 /* GetAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAPI.m; sourceTree = "<group>"; };
+		042002361CDA8AD900A61399 /* PostAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAPI.h; sourceTree = "<group>"; };
+		042002371CDA8AD900A61399 /* PostAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAPI.m; sourceTree = "<group>"; };
 		2F241C33D45826C8B5C210CC /* Pods-MusicSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.release.xcconfig"; sourceTree = "<group>"; };
 		5A171DCE9B17647512C030C3 /* libPods-MusicSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MusicSearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BBBC699E83B65B8B69B513 /* Pods-MusicSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +159,7 @@
 		042002211CDA817200A61399 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0420022D1CDA885A00A61399 /* API */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -175,6 +185,43 @@
 			children = (
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		0420022D1CDA885A00A61399 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0420022E1CDA885A00A61399 /* Base */,
+				0420022F1CDA885A00A61399 /* GET */,
+				042002301CDA885A00A61399 /* POST */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		0420022E1CDA885A00A61399 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				042002311CDA887400A61399 /* API.h */,
+				042002321CDA887400A61399 /* API.m */,
+				042002341CDA8AD900A61399 /* GetAPI.h */,
+				042002351CDA8AD900A61399 /* GetAPI.m */,
+				042002361CDA8AD900A61399 /* PostAPI.h */,
+				042002371CDA8AD900A61399 /* PostAPI.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0420022F1CDA885A00A61399 /* GET */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GET;
+			sourceTree = "<group>";
+		};
+		042002301CDA885A00A61399 /* POST */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = POST;
 			sourceTree = "<group>";
 		};
 		05FFDAAABB81844D37977AE0 /* Pods */ = {
@@ -376,7 +423,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042002331CDA887400A61399 /* API.m in Sources */,
+				042002381CDA8AD900A61399 /* GetAPI.m in Sources */,
 				042002201CDA80D900A61399 /* main.m in Sources */,
+				042002391CDA8AD900A61399 /* PostAPI.m in Sources */,
 				0420021E1CDA80D900A61399 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
