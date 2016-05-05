@@ -63,6 +63,7 @@
 		042002371CDA8AD900A61399 /* PostAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAPI.m; sourceTree = "<group>"; };
 		0420023A1CDA926000A61399 /* SearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAPI.h; sourceTree = "<group>"; };
 		0420023B1CDA926000A61399 /* SearchAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAPI.m; sourceTree = "<group>"; };
+		04B5E9F51CDBB3C4009AF6A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2F241C33D45826C8B5C210CC /* Pods-MusicSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.release.xcconfig"; sourceTree = "<group>"; };
 		5A171DCE9B17647512C030C3 /* libPods-MusicSearch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MusicSearch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BBBC699E83B65B8B69B513 /* Pods-MusicSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 				0420021D1CDA80D900A61399 /* main.m */,
 				042002291CDA81C700A61399 /* LaunchScreen.storyboard */,
 				0420022B1CDA823800A61399 /* Warnings.xcconfig */,
+				04B5E9F51CDBB3C4009AF6A0 /* PrefixHeader.pch */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -559,6 +561,7 @@
 			baseConfigurationReference = A0BBBC699E83B65B8B69B513 /* Pods-MusicSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = MusicSearch/Application/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/MusicSearch/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -572,6 +575,7 @@
 			baseConfigurationReference = 2F241C33D45826C8B5C210CC /* Pods-MusicSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = MusicSearch/Application/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/MusicSearch/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
