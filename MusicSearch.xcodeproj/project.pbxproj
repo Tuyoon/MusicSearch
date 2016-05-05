@@ -21,6 +21,9 @@
 		0420023C1CDA926000A61399 /* SearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420023B1CDA926000A61399 /* SearchAPI.m */; };
 		042002531CDA9ECD00A61399 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0420024B1CDA9ECD00A61399 /* DataModel.xcdatamodeld */; };
 		042002551CDA9ECD00A61399 /* Music.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002521CDA9ECD00A61399 /* Music.m */; };
+		0420025A1CDA9F1100A61399 /* MusicStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 042002591CDA9F1100A61399 /* MusicStorage.m */; };
+		04B5E9EE1CDBA2F6009AF6A0 /* HistoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9ED1CDBA2F6009AF6A0 /* HistoryStorage.m */; };
+		04B5E9F11CDBA304009AF6A0 /* Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9F01CDBA304009AF6A0 /* Storage.m */; };
 		04B5E9F41CDBACA2009AF6A0 /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9F31CDBACA2009AF6A0 /* ManagedObject.m */; };
 		04B5E9F91CDBB701009AF6A0 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9F81CDBB701009AF6A0 /* BaseModel.m */; };
 		04B5E9FC1CDBB70A009AF6A0 /* MusicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9FB1CDBB70A009AF6A0 /* MusicItem.m */; };
@@ -73,6 +76,12 @@
 		0420024C1CDA9ECD00A61399 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		042002511CDA9ECD00A61399 /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Music.h; sourceTree = "<group>"; };
 		042002521CDA9ECD00A61399 /* Music.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Music.m; sourceTree = "<group>"; };
+		042002581CDA9F1100A61399 /* MusicStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicStorage.h; sourceTree = "<group>"; };
+		042002591CDA9F1100A61399 /* MusicStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicStorage.m; sourceTree = "<group>"; };
+		04B5E9EC1CDBA2F6009AF6A0 /* HistoryStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryStorage.h; sourceTree = "<group>"; };
+		04B5E9ED1CDBA2F6009AF6A0 /* HistoryStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryStorage.m; sourceTree = "<group>"; };
+		04B5E9EF1CDBA304009AF6A0 /* Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Storage.h; sourceTree = "<group>"; };
+		04B5E9F01CDBA304009AF6A0 /* Storage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Storage.m; sourceTree = "<group>"; };
 		04B5E9F21CDBACA2009AF6A0 /* ManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObject.h; sourceTree = "<group>"; };
 		04B5E9F31CDBACA2009AF6A0 /* ManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObject.m; sourceTree = "<group>"; };
 		04B5E9F51CDBB3C4009AF6A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -259,9 +268,23 @@
 			isa = PBXGroup;
 			children = (
 				0420024B1CDA9ECD00A61399 /* DataModel.xcdatamodeld */,
+				0420024D1CDA9ECD00A61399 /* Storage */,
 				0420024E1CDA9ECD00A61399 /* StorageObject */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		0420024D1CDA9ECD00A61399 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				04B5E9EF1CDBA304009AF6A0 /* Storage.h */,
+				04B5E9F01CDBA304009AF6A0 /* Storage.m */,
+				042002581CDA9F1100A61399 /* MusicStorage.h */,
+				042002591CDA9F1100A61399 /* MusicStorage.m */,
+				04B5E9EC1CDBA2F6009AF6A0 /* HistoryStorage.h */,
+				04B5E9ED1CDBA2F6009AF6A0 /* HistoryStorage.m */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		0420024E1CDA9ECD00A61399 /* StorageObject */ = {
@@ -506,6 +529,8 @@
 				042002331CDA887400A61399 /* API.m in Sources */,
 				042002551CDA9ECD00A61399 /* Music.m in Sources */,
 				04B5E9F91CDBB701009AF6A0 /* BaseModel.m in Sources */,
+				0420025A1CDA9F1100A61399 /* MusicStorage.m in Sources */,
+				04B5E9EE1CDBA2F6009AF6A0 /* HistoryStorage.m in Sources */,
 				04B5E9FC1CDBB70A009AF6A0 /* MusicItem.m in Sources */,
 				042002381CDA8AD900A61399 /* GetAPI.m in Sources */,
 				04B5EA031CDBD3C8009AF6A0 /* History.m in Sources */,
@@ -514,6 +539,7 @@
 				042002391CDA8AD900A61399 /* PostAPI.m in Sources */,
 				0420021E1CDA80D900A61399 /* AppDelegate.m in Sources */,
 				042002531CDA9ECD00A61399 /* DataModel.xcdatamodeld in Sources */,
+				04B5E9F11CDBA304009AF6A0 /* Storage.m in Sources */,
 				04B5E9F41CDBACA2009AF6A0 /* ManagedObject.m in Sources */,
 				04B5EA001CDBB72B009AF6A0 /* HistoryItem.m in Sources */,
 			);
