@@ -19,8 +19,8 @@
         NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"(artistName contains[cd] %@) or (trackName contains[cd] %@)", term, term];
         [request setPredicate:filterPredicate];
     }
-    NSSortDescriptor *sorter = [[NSSortDescriptor alloc]initWithKey:@"trackName" ascending:YES];
-    [request setSortDescriptors:@[sorter]];
+    NSSortDescriptor *sortDescriptor = [self sortDescriptor];
+    [request setSortDescriptors:@[sortDescriptor]];
     
     return [self allItemsByFetchRequest:request];
 }
@@ -57,6 +57,11 @@
 
 - (NSString *)entityClassName {
     return NSStringFromClass([Music class]);
+}
+
+- (NSSortDescriptor *)sortDescriptor {
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc]initWithKey:@"trackName" ascending:YES];
+    return descriptor;
 }
 
 - (NSPredicate *)predicateForEntityForItem:(NSObject *)item {

@@ -14,7 +14,6 @@
 @interface Storage : NSObject
 
 + (NSURL *)storagePath;
-
 - (NSArray *)allItems;
 - (NSArray *)allItemsByFetchRequest:(NSFetchRequest *)fetchRequest;
 - (void)saveItems:(NSArray *)items;
@@ -28,6 +27,7 @@
 - (void)translateFromEntity:(ManagedObject *)entity toItem:(NSObject *)item;
 - (NSObject *)newItem;
 - (NSString *)entityClassName;
+- (NSSortDescriptor *)sortDescriptor;
 - (NSPredicate *)predicateForEntityForItem:(NSObject *)item;
 
 @end

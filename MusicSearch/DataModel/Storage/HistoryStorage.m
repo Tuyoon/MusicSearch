@@ -34,9 +34,14 @@
     return NSStringFromClass([History class]);
 }
 
+- (NSSortDescriptor *)sortDescriptor {
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc]initWithKey:@"historyId" ascending:NO];
+    return descriptor;
+}
+
 - (NSPredicate *)predicateForEntityForItem:(NSObject *)item {
     HistoryItem *historyItem = (HistoryItem *)item;
-    return [NSPredicate predicateWithFormat:@"historyId = %d", historyItem.historyId];
+    return [NSPredicate predicateWithFormat:@"term LIKE[c] %@", historyItem.term];
 }
 
 @end

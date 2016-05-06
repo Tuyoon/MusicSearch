@@ -74,6 +74,8 @@
 
 - (NSArray *)allItems {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[self entityClassName]];
+    NSSortDescriptor *sortDescriptor = [self sortDescriptor];
+    [request setSortDescriptors:@[sortDescriptor]];
     
     return [self allItemsByFetchRequest:request];
 }
@@ -174,6 +176,10 @@
 
 - (NSString *)entityClassName {
     AssertOverrideReturnNil;
+}
+
+- (NSSortDescriptor *)sortDescriptor {
+    return nil;
 }
 
 - (NSPredicate *)predicateForEntityForItem:(NSObject *)item {
