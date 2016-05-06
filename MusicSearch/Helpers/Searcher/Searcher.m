@@ -46,8 +46,10 @@
         }
     };
     [SearchAPI apiWithObject:@{kAPITermKey : term} withSuccessBlock:^(id result) {
-        [self save:result[@"results"]];
-        searchBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self save:result[@"results"]];
+            searchBlock();
+        });
     } withFailure:^(NSError *error) {
         searchBlock();
     }];
