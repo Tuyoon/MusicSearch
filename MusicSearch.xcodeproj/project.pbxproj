@@ -31,6 +31,7 @@
 		04B5EA001CDBB72B009AF6A0 /* HistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9FF1CDBB72B009AF6A0 /* HistoryItem.m */; };
 		04B5EA031CDBD3C8009AF6A0 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5EA021CDBD3C8009AF6A0 /* History.m */; };
 		04CA38E41CDC0B8B00F18F34 /* MusicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA38E31CDC0B8B00F18F34 /* MusicTableViewCell.m */; };
+		04CA38E81CDCAE7E00F18F34 /* MusicDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA38E71CDCAE7E00F18F34 /* MusicDetailsViewController.m */; };
 		04CA39001CDCBCFB00F18F34 /* HistoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA38FC1CDCBCFB00F18F34 /* HistoryDataSource.m */; };
 		04CA39011CDCBCFB00F18F34 /* MusicsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA38FF1CDCBCFB00F18F34 /* MusicsDataSource.m */; };
 		04CA39041CDCC0AB00F18F34 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA39031CDCC0AB00F18F34 /* HistoryTableViewCell.m */; };
@@ -102,6 +103,8 @@
 		04B5EA021CDBD3C8009AF6A0 /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 		04CA38E21CDC0B8B00F18F34 /* MusicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicTableViewCell.h; sourceTree = "<group>"; };
 		04CA38E31CDC0B8B00F18F34 /* MusicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicTableViewCell.m; sourceTree = "<group>"; };
+		04CA38E61CDCAE7E00F18F34 /* MusicDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDetailsViewController.h; sourceTree = "<group>"; };
+		04CA38E71CDCAE7E00F18F34 /* MusicDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDetailsViewController.m; sourceTree = "<group>"; };
 		04CA38FB1CDCBCFB00F18F34 /* HistoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDataSource.h; sourceTree = "<group>"; };
 		04CA38FC1CDCBCFB00F18F34 /* HistoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDataSource.m; sourceTree = "<group>"; };
 		04CA38FE1CDCBCFB00F18F34 /* MusicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicsDataSource.h; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 			children = (
 				042002261CDA81B600A61399 /* Main.storyboard */,
 				042002271CDA81B600A61399 /* Search */,
+				04CA38E51CDCAE6C00F18F34 /* MusicDetails */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -363,6 +367,15 @@
 				04CA39031CDCC0AB00F18F34 /* HistoryTableViewCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		04CA38E51CDCAE6C00F18F34 /* MusicDetails */ = {
+			isa = PBXGroup;
+			children = (
+				04CA38E61CDCAE7E00F18F34 /* MusicDetailsViewController.h */,
+				04CA38E71CDCAE7E00F18F34 /* MusicDetailsViewController.m */,
+			);
+			path = MusicDetails;
 			sourceTree = "<group>";
 		};
 		04CA38F91CDCBCFB00F18F34 /* DataSources */ = {
@@ -604,6 +617,7 @@
 				0420023C1CDA926000A61399 /* SearchAPI.m in Sources */,
 				042002201CDA80D900A61399 /* main.m in Sources */,
 				042002391CDA8AD900A61399 /* PostAPI.m in Sources */,
+				04CA38E81CDCAE7E00F18F34 /* MusicDetailsViewController.m in Sources */,
 				0420021E1CDA80D900A61399 /* AppDelegate.m in Sources */,
 				04CA39011CDCBCFB00F18F34 /* MusicsDataSource.m in Sources */,
 				04CA39041CDCC0AB00F18F34 /* HistoryTableViewCell.m in Sources */,
