@@ -30,6 +30,7 @@
 		04B5E9FC1CDBB70A009AF6A0 /* MusicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9FB1CDBB70A009AF6A0 /* MusicItem.m */; };
 		04B5EA001CDBB72B009AF6A0 /* HistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5E9FF1CDBB72B009AF6A0 /* HistoryItem.m */; };
 		04B5EA031CDBD3C8009AF6A0 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5EA021CDBD3C8009AF6A0 /* History.m */; };
+		04CA39001CDCBCFB00F18F34 /* HistoryDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA38FC1CDCBCFB00F18F34 /* HistoryDataSource.m */; };
 		04CA39011CDCBCFB00F18F34 /* MusicsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CA38FF1CDCBCFB00F18F34 /* MusicsDataSource.m */; };
 		B585BFC1D1C3EAD52DBBF9DE /* libPods-MusicSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A171DCE9B17647512C030C3 /* libPods-MusicSearch.a */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,8 @@
 		04B5E9FF1CDBB72B009AF6A0 /* HistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryItem.m; sourceTree = "<group>"; };
 		04B5EA011CDBD3C8009AF6A0 /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		04B5EA021CDBD3C8009AF6A0 /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		04CA38FB1CDCBCFB00F18F34 /* HistoryDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDataSource.h; sourceTree = "<group>"; };
+		04CA38FC1CDCBCFB00F18F34 /* HistoryDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDataSource.m; sourceTree = "<group>"; };
 		04CA38FE1CDCBCFB00F18F34 /* MusicsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicsDataSource.h; sourceTree = "<group>"; };
 		04CA38FF1CDCBCFB00F18F34 /* MusicsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicsDataSource.m; sourceTree = "<group>"; };
 		2F241C33D45826C8B5C210CC /* Pods-MusicSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicSearch/Pods-MusicSearch.release.xcconfig"; sourceTree = "<group>"; };
@@ -347,9 +350,19 @@
 		04CA38F91CDCBCFB00F18F34 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				04CA38FA1CDCBCFB00F18F34 /* HistoryDataSource */,
 				04CA38FD1CDCBCFB00F18F34 /* MusicsDataSource */,
 			);
 			path = DataSources;
+			sourceTree = "<group>";
+		};
+		04CA38FA1CDCBCFB00F18F34 /* HistoryDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				04CA38FB1CDCBCFB00F18F34 /* HistoryDataSource.h */,
+				04CA38FC1CDCBCFB00F18F34 /* HistoryDataSource.m */,
+			);
+			path = HistoryDataSource;
 			sourceTree = "<group>";
 		};
 		04CA38FD1CDCBCFB00F18F34 /* MusicsDataSource */ = {
@@ -576,6 +589,7 @@
 				04CA39011CDCBCFB00F18F34 /* MusicsDataSource.m in Sources */,
 				042002531CDA9ECD00A61399 /* DataModel.xcdatamodeld in Sources */,
 				04B5E9F11CDBA304009AF6A0 /* Storage.m in Sources */,
+				04CA39001CDCBCFB00F18F34 /* HistoryDataSource.m in Sources */,
 				04B5E9F41CDBACA2009AF6A0 /* ManagedObject.m in Sources */,
 				04B5EA001CDBB72B009AF6A0 /* HistoryItem.m in Sources */,
 			);
