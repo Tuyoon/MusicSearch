@@ -10,6 +10,6 @@
 
 @interface MusicStorage : Storage
 
-- (NSArray *)itemsWithTerm:(NSString *)term;
+- (NSArray *)itemsWithQuery:(NSString *)query;
 
 @end

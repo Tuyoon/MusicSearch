@@ -11,6 +11,6 @@
 @implementation History
 
 @dynamic historyId;
-@dynamic term;
+@dynamic query;
 
 @end

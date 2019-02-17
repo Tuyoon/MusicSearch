@@ -13,10 +13,10 @@
 
 @implementation MusicStorage 
 
-- (NSArray *)itemsWithTerm:(NSString *)term {
+- (NSArray *)itemsWithQuery:(NSString *)query {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Music"];
-    if ([term length] > 0) {
-        NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"(artistName contains[cd] %@) or (trackName contains[cd] %@)", term, term];
+    if (query.length > 0) {
+        NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@"(artistName contains[cd] %@) or (trackName contains[cd] %@)", query, query];
         [request setPredicate:filterPredicate];
     }
     NSSortDescriptor *sortDescriptor = [self sortDescriptor];

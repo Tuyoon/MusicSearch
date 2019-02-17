@@ -10,10 +10,10 @@
 #import "MusicItem.h"
 
 @implementation MusicTableViewCell {
-    IBOutlet UILabel *_titleLabel;
-    IBOutlet UILabel *_collectionLabel;
-    IBOutlet UILabel *_artistNameLabel;
-    IBOutlet UIImageView *_artworkImageView;
+    __weak IBOutlet UILabel *_titleLabel;
+    __weak IBOutlet UILabel *_collectionLabel;
+    __weak IBOutlet UILabel *_artistNameLabel;
+    __weak IBOutlet UIImageView *_artworkImageView;
 }
 
 - (void)awakeFromNib {
@@ -22,6 +22,7 @@
 }
 
 - (void)prepareForReuse {
+    [super prepareForReuse];
     _artworkImageView.image = nil;
 }
 

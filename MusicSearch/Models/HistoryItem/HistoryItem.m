@@ -19,10 +19,10 @@
     return self;
 }
 
-- (instancetype)initWithTerm:(NSString *)term {
+- (instancetype)initWithQuery:(NSString *)query {
     self = [self init];
     if (self) {
-        _term = term;
+        _query = query;
     }
     
     return self;

@@ -11,7 +11,7 @@
 @interface HistoryItem : BaseModel
 
 @property (nonatomic, assign) NSTimeInterval historyId;
-@property (nonatomic, strong) NSString *term;
-- (instancetype)initWithTerm:(NSString *)term;
+@property (nonatomic, strong) NSString *query;
+- (instancetype)initWithQuery:(NSString *)query;
 
 @end

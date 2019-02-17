@@ -10,10 +10,10 @@
 #import "HistoryItem.h"
 
 @interface HistoryTableViewCell () {
-    IBOutlet UILabel *_titleLabel;
+    __weak IBOutlet UILabel *_titleLabel;
 }
-
 @end
+
 @implementation HistoryTableViewCell
 
 - (void)awakeFromNib {
@@ -23,12 +23,11 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
 - (void)updateUI {
-    _titleLabel.text = self.item.term;
+    _titleLabel.text = self.item.query;
 }
 
 - (void)setItem:(HistoryItem *)item {

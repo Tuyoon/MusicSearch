@@ -13,26 +13,23 @@
 #import "HistoryItem.h"
 
 @interface SearchViewController ()<MusicsDataSourceDelegate, UITableViewDelegate, UISearchBarDelegate>
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;;
+
 @end
 
 @implementation SearchViewController {
-    IBOutlet UISearchBar *_searchBar;
+    __weak IBOutlet UITableView *_tableView;
+    __weak IBOutlet NSLayoutConstraint *_tableViewBottomConstraint;
+    __weak IBOutlet UISearchBar *_searchBar;
+    __weak UIView *_emptyResultsView;
     UIActivityIndicatorView *_activityView;
     MusicsDataSource *_musicsDataSource;
     HistoryDataSource *_historyDataSource;
-    NSString *_term;
+    NSString *_query;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self hideNavigationBar];
-    [self createActivityIndicator];
-    [self settingDataSouces];
-    [self updateHistory];
-    [self showMusic];
-    [self subscribe];
+    [self configure];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,6 +46,17 @@
     [self unsubscribe];
 }
 
+#pragma mark - Private Methods
+
+- (void)configure {
+    [self subscribe];
+    [self hideNavigationBar];
+    [self createActivityIndicator];
+    [self settingDataSouces];
+    [self updateHistory];
+    [self showMusic];
+}
+
 - (void)subscribe {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -62,14 +70,14 @@
     CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
-        self.tableViewBottomConstraint.constant = keyboardSize.height;
+        _tableViewBottomConstraint.constant = keyboardSize.height;
     }];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
-        self.tableViewBottomConstraint.constant = 0;
+        _tableViewBottomConstraint.constant = 0;
     }];
 }
 
@@ -88,17 +96,17 @@
 }
 
 - (void)showMusic {
-    self.tableView.dataSource = _musicsDataSource;
+    _tableView.dataSource = _musicsDataSource;
     [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = [UIColor whiteColor];
     }];
     [self updateUI];
 }
 
 - (void)showHistory {
-    self.tableView.dataSource = _historyDataSource;
+    _tableView.dataSource = _historyDataSource;
     [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.backgroundColor = [UIColor grayColor];
+        _tableView.backgroundColor = [UIColor grayColor];
     }];
     
     [self updateUI];
@@ -109,38 +117,39 @@
 }
 
 - (void)updateUI {
-    [self.tableView reloadData];
+    _tableView.tableHeaderView = _musicsDataSource.items.count == 0 ? _emptyResultsView : nil;
+    [_tableView reloadData];
 }
 
 - (void)searchForItem:(HistoryItem *)item {
-    _searchBar.text = item.term;
-    [self searchBarSearchButtonClicked:_searchBar];
+    _query = item.query;
+    _searchBar.text = _query;
+    [self showMusic];
 }
 
-- (void)search:(NSString *)term {
+- (void)search {
     [self showActivityView];
-    [_musicsDataSource loadMusicsWithTerm:term];
+    _tableView.tableHeaderView = nil;
+    [_musicsDataSource loadMusicsWithQuery:_query completion:^(NSArray *items) {
+        [self hideActivityView];
+        [self updateHistory];
+        [self updateUI];
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"DetailsSegue"] && [segue.destinationViewController isKindOfClass:[MusicDetailsViewController class]]) {
         MusicDetailsViewController* controller = (MusicDetailsViewController*)segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+        NSIndexPath *indexPath = [_tableView indexPathForCell:(UITableViewCell *)sender];
         controller.item = _musicsDataSource.items[(NSUInteger)indexPath.row];
     }
-}
-
-#pragma mark - MusicsDataSourceDelegate
-
-- (void)dataSourceChanged:(MusicsDataSource *)dataSource {
-    [self hideActivityView];
-    [self updateHistory];
-    [self updateUI];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (tableView.dataSource == _historyDataSource) {
         [_searchBar resignFirstResponder];
         [self showMusic];
@@ -153,20 +162,20 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [self showHistory];
-    _term = searchBar.text;
+    _query = searchBar.text;
     return YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    _term = searchBar.text;
+    _query = searchBar.text;
     [searchBar resignFirstResponder];
     [self showMusic];
-    [self search:searchBar.text];
+    [self search];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
-    searchBar.text = _term;
+    searchBar.text = _query;
     [self showMusic];
 }
 
@@ -177,14 +186,7 @@
 }
 
 - (void)showActivityView {
-    if ([NSThread isMainThread]) {
-        [self startAnimatingActivity];
-    }
-    else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self startAnimatingActivity];
-        });
-    }
+    [self startAnimatingActivity];
 }
 
 - (void)startAnimatingActivity {
@@ -200,14 +202,7 @@
 }
 
 - (void)hideActivityView {
-    if ([NSThread isMainThread]) {
-        [self stopAnimatingActivity];
-    }
-    else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self stopAnimatingActivity];
-        });
-    }
+    [self stopAnimatingActivity];
 }
 
 - (void)stopAnimatingActivity {

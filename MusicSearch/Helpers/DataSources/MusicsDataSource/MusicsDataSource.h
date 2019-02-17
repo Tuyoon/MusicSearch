@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong, readonly) NSArray *items;
 @property (nonatomic, weak) id<MusicsDataSourceDelegate> delegate;
-- (void)loadMusicsWithTerm:(NSString *)term;
+
+- (void)loadMusicsWithQuery:(NSString *)query completion:(void(^)(NSArray *items))completion;
 
 @end

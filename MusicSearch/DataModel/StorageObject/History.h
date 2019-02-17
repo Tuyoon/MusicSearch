@@ -11,6 +11,6 @@
 @interface History : ManagedObject
 
 @property (nullable, nonatomic, retain) NSNumber *historyId;
-@property (nullable, nonatomic, retain) NSString *term;
+@property (nullable, nonatomic, retain) NSString *query;
 
 @end

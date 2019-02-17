@@ -22,9 +22,12 @@
 
 @implementation MusicsDataSource
 
-- (void)loadMusicsWithTerm:(NSString *)term {
-    [[Searcher sharedInstance] searchWithTerm:term withCompletion:^(NSArray *items) {
+- (void)loadMusicsWithQuery:(NSString *)query completion:(void(^)(NSArray *items))completion {
+    [[Searcher sharedInstance] search:query withCompletion:^(NSArray *items) {
         self.items = items;
+        if (completion) {
+            completion(items);
+        }
         [self informAboutChanging];
     }];
 }

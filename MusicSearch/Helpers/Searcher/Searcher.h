@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MusicWebConnector.h"
 
 typedef void(^SearcherCompletionBlock)(NSArray *items);
 
 @interface Searcher : NSObject
 
+@property (nonatomic, strong) id<MusicWebConnectorProtocol> webConnector;
+
 + (instancetype)sharedInstance;
-- (void)searchWithTerm:(NSString *)term withCompletion:(SearcherCompletionBlock)completion;
+- (void)search:(NSString *)query withCompletion:(SearcherCompletionBlock)completion;
 - (NSArray *)searchHistory;
 
 @end

@@ -16,14 +16,14 @@
     HistoryItem *fromItem = (HistoryItem *)item;
     History *toEntity = (History *)entity;
     toEntity.historyId = @(fromItem.historyId);
-    toEntity.term = fromItem.term;
+    toEntity.query = fromItem.query;
 }
 
 - (void)translateFromEntity:(ManagedObject *)entity toItem:(NSObject *)item {
     HistoryItem *toItem = (HistoryItem *)item;
     History *fromEntity = (History *)entity;
     toItem.historyId = [fromEntity.historyId doubleValue];
-    toItem.term = fromEntity.term;
+    toItem.query = fromEntity.query;
 }
 
 - (NSObject *)newItem {
@@ -41,7 +41,7 @@
 
 - (NSPredicate *)predicateForEntityForItem:(NSObject *)item {
     HistoryItem *historyItem = (HistoryItem *)item;
-    return [NSPredicate predicateWithFormat:@"term LIKE[c] %@", historyItem.term];
+    return [NSPredicate predicateWithFormat:@"query LIKE[c] %@", historyItem.query];
 }
 
 @end

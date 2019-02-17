@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "MusicWebConnectorTest.h"
 
 @interface MusicSearchTests : XCTestCase
 
@@ -33,6 +34,20 @@
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
+    }];
+}
+
+- (void)testSearch {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"MusicWebConnectorTest search test"];
+    MusicWebConnectorTest *webConnector = [MusicWebConnectorTest new];
+    [webConnector searchWithQuery:@"#" success:^(id object) {
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError * _Nullable error) {
+        NSLog(@"Expectation fulfilled");
     }];
 }
 

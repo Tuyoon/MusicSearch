@@ -9,9 +9,9 @@
 #import "Searcher.h"
 #import "MusicStorage.h"
 #import "HistoryStorage.h"
-#import "SearchAPI.h"
 #import "MusicItem.h"
 #import "HistoryItem.h"
+#import "MusicWebConnector.h"
 
 @implementation Searcher {
     MusicStorage *_musicStorage;
@@ -33,39 +33,42 @@
     if (self) {
         _musicStorage = [[MusicStorage alloc] init];
         _historyStorage = [[HistoryStorage alloc] init];
+        _webConnector = [[MusicWebConnector alloc] init];
     }
     
     return self;
 }
 
-- (void)searchWithTerm:(NSString *)term withCompletion:(SearcherCompletionBlock)completion {
-    
-    void (^searchBlock)(void) = ^{
+- (void)search:(NSString *)query withCompletion:(SearcherCompletionBlock)completion {
+    void (^completeSearch)(void) = ^{
         if (completion) {
-            completion([self searchInStorage:term]);
+            completion([self searchInStorage:query]);
         }
     };
-    [SearchAPI apiWithObject:@{kAPITermKey : term} withSuccessBlock:^(id result) {
-        [self save:result[@"results"]];
-        searchBlock();
-    } withFailure:^(NSError *error) {
-        searchBlock();
+    
+    __weak typeof(self) wSelf = self;
+    [_webConnector searchWithQuery:query success:^(id object) {
+        [wSelf save:object[@"results"]];
+        completeSearch();
+    } failure:^(NSError *error) {
+        completeSearch();
     }];
-    [self saveToHistory:term];
+    
+    [self saveQueryToHistory:query];
 }
 
 - (void)save:(id)result {
+    // TODO: optimize
     NSArray *items = [MusicItem itemsFromDictionariesArray:result];
     [_musicStorage saveItems:items];
 }
 
-- (NSArray *)searchInStorage:(NSString *)term {
-    return [_musicStorage itemsWithTerm:term];
+- (NSArray *)searchInStorage:(NSString *)query {
+    return [_musicStorage itemsWithQuery:query];
 }
 
-- (void)saveToHistory:(NSString *)term {
-    HistoryItem *item = [[HistoryItem alloc] init];
-    item.term = term;
+- (void)saveQueryToHistory:(NSString *)query {
+    HistoryItem *item = [[HistoryItem alloc] initWithQuery:query];
     [_historyStorage saveItems:@[item]];
 }
 
