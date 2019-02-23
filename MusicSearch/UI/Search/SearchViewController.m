@@ -18,9 +18,8 @@
 
 @implementation SearchViewController {
     __weak IBOutlet UITableView *_tableView;
-    __weak IBOutlet NSLayoutConstraint *_tableViewBottomConstraint;
     __weak IBOutlet UISearchBar *_searchBar;
-    __weak UIView *_emptyResultsView;
+    __weak IBOutlet UIView *_emptyResultsView;
     UIActivityIndicatorView *_activityView;
     MusicsDataSource *_musicsDataSource;
     HistoryDataSource *_historyDataSource;
@@ -68,17 +67,11 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    [UIView animateWithDuration:duration animations:^{
-        _tableViewBottomConstraint.constant = keyboardSize.height;
-    }];
+    [_tableView setContentInset:UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    [UIView animateWithDuration:duration animations:^{
-        _tableViewBottomConstraint.constant = 0;
-    }];
+    [_tableView setContentInset:UIEdgeInsetsZero];
 }
 
 - (void)settingDataSouces {
@@ -96,6 +89,7 @@
 }
 
 - (void)showMusic {
+    _tableView.tableHeaderView = _emptyResultsView;
     _tableView.dataSource = _musicsDataSource;
     [UIView animateWithDuration:0.3 animations:^{
         _tableView.backgroundColor = [UIColor whiteColor];
@@ -104,9 +98,10 @@
 }
 
 - (void)showHistory {
+    _tableView.tableHeaderView = nil;
     _tableView.dataSource = _historyDataSource;
     [UIView animateWithDuration:0.3 animations:^{
-        _tableView.backgroundColor = [UIColor grayColor];
+        _tableView.backgroundColor = [UIColor lightGrayColor];
     }];
     
     [self updateUI];
@@ -124,7 +119,7 @@
 - (void)searchForItem:(HistoryItem *)item {
     _query = item.query;
     _searchBar.text = _query;
-    [self showMusic];
+    [self search];
 }
 
 - (void)search {
@@ -179,35 +174,24 @@
     [self showMusic];
 }
 
-#pragma mark - Activity
+#pragma mark - Activity View
 
 - (void)createActivityIndicator {
     _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-}
-
-- (void)showActivityView {
-    [self startAnimatingActivity];
-}
-
-- (void)startAnimatingActivity {
     _activityView.frame = self.view.bounds;
     _activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _activityView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
-    _activityView.hidden = NO;
-    _activityView.userInteractionEnabled = NO;
-    self.view.userInteractionEnabled = NO;
-    
+    _activityView.hidesWhenStopped = YES;
     [self.view addSubview:_activityView];
+}
+
+- (void)showActivityView {
+    self.view.userInteractionEnabled = NO;
     [_activityView startAnimating];
 }
 
 - (void)hideActivityView {
-    [self stopAnimatingActivity];
-}
-
-- (void)stopAnimatingActivity {
     [_activityView stopAnimating];
-    [_activityView removeFromSuperview];
     self.view.userInteractionEnabled = YES;
 }
 
