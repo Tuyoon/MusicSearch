@@ -28,27 +28,25 @@
 - (void)translateFromItem:(NSObject *)item toEntity:(ManagedObject *)entity {
     MusicItem *fromItem = (MusicItem *)item;
     Music *toEntity = (Music *)entity;
-    toEntity.musicId = fromItem.musicId;
+    toEntity.musicId = fromItem.trackId;
     toEntity.artistName = fromItem.artistName;
     toEntity.artworkUrl100 = fromItem.artworkUrl100;
     toEntity.collectionName = fromItem.collectionName;
     toEntity.trackName = fromItem.trackName;
     toEntity.primaryGenreName = fromItem.primaryGenreName;
     toEntity.releaseDate = fromItem.releaseDate;
-    toEntity.artwork100 = UIImageJPEGRepresentation(fromItem.artwork100, 1);
 }
 
 - (void)translateFromEntity:(ManagedObject *)entity toItem:(NSObject *)item {
     MusicItem *toItem = (MusicItem *)item;
     Music *fromEntity = (Music *)entity;
-    toItem.musicId = fromEntity.musicId;
+    toItem.trackId = fromEntity.musicId;
     toItem.artistName = fromEntity.artistName;
     toItem.artworkUrl100 = fromEntity.artworkUrl100;
     toItem.collectionName = fromEntity.collectionName;
     toItem.trackName = fromEntity.trackName;
     toItem.primaryGenreName = fromEntity.primaryGenreName;
     toItem.releaseDate = fromEntity.releaseDate;
-    toItem.artwork100 = [UIImage imageWithData:fromEntity.artwork100];
 }
 
 - (NSObject *)newItem {
@@ -66,7 +64,7 @@
 
 - (NSPredicate *)predicateForEntityForItem:(NSObject *)item {
     MusicItem *musicItem = (MusicItem *)item;
-    return [NSPredicate predicateWithFormat:@"musicId = %@", musicItem.musicId];
+    return [NSPredicate predicateWithFormat:@"musicId = %@", musicItem.trackId];
 }
 
 @end

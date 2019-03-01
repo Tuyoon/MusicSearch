@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearcherProtocol.h"
 
 @class MusicsDataSource;
 
@@ -23,5 +24,7 @@
 @property (nonatomic, weak) id<MusicsDataSourceDelegate> delegate;
 
 - (void)loadMusicsWithQuery:(NSString *)query completion:(void(^)(NSArray *items))completion;
+
+- (instancetype)initWithSearcher:(id<SearcherProtocol>)searcher;
 
 @end

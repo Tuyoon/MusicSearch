@@ -10,7 +10,9 @@
 #import "HistoryTableViewCell.h"
 #import "Searcher.h"
 
-@interface HistoryDataSource ()
+@interface HistoryDataSource () {
+    id<SearcherProtocol> _searcher;
+}
 
 @property (nonatomic, strong, readwrite) NSArray *items;
 
@@ -27,8 +29,16 @@
     return self;
 }
 
+- (instancetype)initWithSearcher:(id<SearcherProtocol>)searcher {
+    self = [super init];
+    if (self) {
+        _searcher = searcher;
+    }
+    return self;
+}
+
 - (void)updateHistory {
-    self.items = [[Searcher sharedInstance] searchHistory];
+    self.items =  [_searcher searchHistory];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

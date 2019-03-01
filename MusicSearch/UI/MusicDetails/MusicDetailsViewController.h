@@ -10,7 +10,7 @@
 
 @class MusicItem;
 
-@interface MusicDetailsViewController : UIViewController
+@interface MusicDetailsViewController : UITableViewController
 
 @property (nonatomic, strong) MusicItem *item;
 

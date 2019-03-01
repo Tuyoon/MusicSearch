@@ -16,28 +16,51 @@
 @implementation Searcher {
     MusicStorage *_musicStorage;
     HistoryStorage *_historyStorage;
+    id<MusicWebConnectorProtocol> _webConnector;
 }
 
-+ (instancetype)sharedInstance {
-    static Searcher *instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[Searcher alloc] init];
-    });
-    
-    return instance;
+- (instancetype)initWithWebConnector:(id<MusicWebConnectorProtocol>) webConnector {
+    self = [super init];
+    if (self) {
+        _webConnector = webConnector;
+        [self configure];
+    }
+    return self;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _musicStorage = [[MusicStorage alloc] init];
-        _historyStorage = [[HistoryStorage alloc] init];
-        _webConnector = [[MusicWebConnector alloc] init];
+        [self configure];
     }
     
     return self;
 }
+
+- (void)configure {
+    _musicStorage = [[MusicStorage alloc] init];
+    _historyStorage = [[HistoryStorage alloc] init];
+    _webConnector = [[MusicWebConnector alloc] init];
+}
+
+- (void)save:(id)result {
+    NSError *error = nil;
+    NSArray<MusicItem *> *items = [MusicItem arrayOfModelsFromDictionaries:result error:&error];
+    if (!error) {
+        [_musicStorage saveItems:items];
+    }
+}
+
+- (NSArray *)searchInStorage:(NSString *)query {
+    return [_musicStorage itemsWithQuery:query];
+}
+
+- (void)saveQueryToHistory:(NSString *)query {
+    HistoryItem *item = [[HistoryItem alloc] initWithQuery:query];
+    [_historyStorage saveItems:@[item]];
+}
+
+#pragma mark - SearcherProtocol
 
 - (void)search:(NSString *)query withCompletion:(SearcherCompletionBlock)completion {
     void (^completeSearch)(void) = ^{
@@ -55,21 +78,6 @@
     }];
     
     [self saveQueryToHistory:query];
-}
-
-- (void)save:(id)result {
-    // TODO: optimize
-    NSArray *items = [MusicItem itemsFromDictionariesArray:result];
-    [_musicStorage saveItems:items];
-}
-
-- (NSArray *)searchInStorage:(NSString *)query {
-    return [_musicStorage itemsWithQuery:query];
-}
-
-- (void)saveQueryToHistory:(NSString *)query {
-    HistoryItem *item = [[HistoryItem alloc] initWithQuery:query];
-    [_historyStorage saveItems:@[item]];
 }
 
 - (NSArray *)searchHistory {

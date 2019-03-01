@@ -6,17 +6,16 @@
 //  Copyright © 2016 t. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import <JSONModel/JSONModel.h>
 
-@interface MusicItem : BaseModel
+@interface MusicItem : JSONModel
 
-@property (nonatomic, strong) NSNumber *musicId;
-@property (nonatomic, strong) NSString *artistName;
-@property (nonatomic, strong) NSString *artworkUrl100;
-@property (nonatomic, strong) NSString *collectionName;
-@property (nonatomic, strong) NSString *trackName;
-@property (nonatomic, strong) NSString *primaryGenreName;
-@property (nonatomic, strong) NSString *releaseDate;
-@property (nonatomic, strong) UIImage *artwork100;
+@property (nonatomic, strong) NSNumber<Optional> *trackId;
+@property (nonatomic, strong) NSString<Optional> *artistName;
+@property (nonatomic, strong) NSString<Optional> *artworkUrl100;
+@property (nonatomic, strong) NSString<Optional> *collectionName;
+@property (nonatomic, strong) NSString<Optional> *trackName;
+@property (nonatomic, strong) NSString<Optional> *primaryGenreName;
+@property (nonatomic, strong) NSString<Optional> *releaseDate;
 
 @end

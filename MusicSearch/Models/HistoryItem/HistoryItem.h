@@ -6,9 +6,9 @@
 //  Copyright © 2016 t. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import <Foundation/Foundation.h>
 
-@interface HistoryItem : BaseModel
+@interface HistoryItem : NSObject
 
 @property (nonatomic, assign) NSTimeInterval historyId;
 @property (nonatomic, strong) NSString *query;

@@ -8,15 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "MusicWebConnector.h"
+#import "SearcherProtocol.h"
 
-typedef void(^SearcherCompletionBlock)(NSArray *items);
-
-@interface Searcher : NSObject
+@interface Searcher : NSObject<SearcherProtocol>
 
 @property (nonatomic, strong) id<MusicWebConnectorProtocol> webConnector;
-
-+ (instancetype)sharedInstance;
-- (void)search:(NSString *)query withCompletion:(SearcherCompletionBlock)completion;
-- (NSArray *)searchHistory;
-
+- (instancetype)initWithWebConnector:(id<MusicWebConnectorProtocol>) webConnector;
 @end

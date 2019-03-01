@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UIColor *mainColor = [UIColor colorWithRed:163.0/255.0 green:198.0/255.0 blue:68.0/255.0 alpha:1.0];
+    UINavigationBar.appearance.tintColor = mainColor;
+    UIActivityIndicatorView.appearance.color = mainColor;
+    
     return YES;
 }
 

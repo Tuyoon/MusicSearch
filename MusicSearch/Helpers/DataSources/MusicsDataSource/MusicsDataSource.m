@@ -8,9 +8,9 @@
 
 #import "MusicsDataSource.h"
 #import "MusicTableViewCell.h"
-#import "Searcher.h"
 
 @interface MusicsDataSource () {
+    id<SearcherProtocol> _searcher;
     struct {
         unsigned int changed : 1;
     } _delegateFlags;
@@ -22,8 +22,16 @@
 
 @implementation MusicsDataSource
 
+- (instancetype)initWithSearcher:(id<SearcherProtocol>)searcher {
+    self = [super init];
+    if (self) {
+        _searcher = searcher;
+    }
+    return self;
+}
+
 - (void)loadMusicsWithQuery:(NSString *)query completion:(void(^)(NSArray *items))completion {
-    [[Searcher sharedInstance] search:query withCompletion:^(NSArray *items) {
+    [_searcher search:query withCompletion:^(NSArray *items) {
         self.items = items;
         if (completion) {
             completion(items);

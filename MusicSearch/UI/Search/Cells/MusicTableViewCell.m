@@ -8,6 +8,7 @@
 
 #import "MusicTableViewCell.h"
 #import "MusicItem.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation MusicTableViewCell {
     __weak IBOutlet UILabel *_titleLabel;
@@ -30,7 +31,7 @@
     _titleLabel.text = self.item.trackName;
     _collectionLabel.text = self.item.collectionName;
     _artistNameLabel.text = self.item.artistName;
-    _artworkImageView.image = self.item.artwork100;
+    [_artworkImageView sd_setImageWithURL:[NSURL URLWithString:self.item.artworkUrl100]];
 }
 
 - (void)setItem:(MusicItem *)item {

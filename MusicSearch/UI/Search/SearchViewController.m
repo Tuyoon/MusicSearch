@@ -11,6 +11,7 @@
 #import "HistoryDataSource.h"
 #import "MusicDetailsViewController.h"
 #import "HistoryItem.h"
+#import "Searcher.h"
 
 @interface SearchViewController ()<MusicsDataSourceDelegate, UITableViewDelegate, UISearchBarDelegate>
 
@@ -21,14 +22,21 @@
     __weak IBOutlet UISearchBar *_searchBar;
     __weak IBOutlet UIView *_emptyResultsView;
     UIActivityIndicatorView *_activityView;
+    id<MusicWebConnectorProtocol> _webConnector;
     MusicsDataSource *_musicsDataSource;
     HistoryDataSource *_historyDataSource;
+    id<SearcherProtocol> _searcher;
     NSString *_query;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self subscribe];
+    [self hideNavigationBar];
+    [self createActivityIndicator];
     [self configure];
+    [self updateHistory];
+    [self showMusic];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,15 +54,6 @@
 }
 
 #pragma mark - Private Methods
-
-- (void)configure {
-    [self subscribe];
-    [self hideNavigationBar];
-    [self createActivityIndicator];
-    [self settingDataSouces];
-    [self updateHistory];
-    [self showMusic];
-}
 
 - (void)subscribe {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -74,10 +73,12 @@
     [_tableView setContentInset:UIEdgeInsetsZero];
 }
 
-- (void)settingDataSouces {
-    _musicsDataSource = [[MusicsDataSource alloc] init];
+- (void)configure {
+    _webConnector = [[MusicWebConnector alloc] init];
+    _searcher = [[Searcher alloc] initWithWebConnector:_webConnector];
+    _musicsDataSource = [[MusicsDataSource alloc] initWithSearcher:_searcher];
     _musicsDataSource.delegate = self;
-    _historyDataSource = [[HistoryDataSource alloc] init];
+    _historyDataSource = [[HistoryDataSource alloc] initWithSearcher:_searcher];
 }
 
 - (void)hideNavigationBar {
@@ -133,7 +134,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"DetailsSegue"] && [segue.destinationViewController isKindOfClass:[MusicDetailsViewController class]]) {
+    if ([segue.destinationViewController isKindOfClass:[MusicDetailsViewController class]]) {
         MusicDetailsViewController* controller = (MusicDetailsViewController*)segue.destinationViewController;
         NSIndexPath *indexPath = [_tableView indexPathForCell:(UITableViewCell *)sender];
         controller.item = _musicsDataSource.items[(NSUInteger)indexPath.row];

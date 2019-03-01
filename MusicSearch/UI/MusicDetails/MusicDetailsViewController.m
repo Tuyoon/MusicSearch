@@ -8,6 +8,7 @@
 
 #import "MusicDetailsViewController.h"
 #import "MusicItem.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MusicDetailsViewController ()
 
@@ -43,7 +44,7 @@
     _artistNameLabel.text = self.item.artistName;
     _releaseDateLabel.text = self.item.releaseDate;
     _primaryGenreNameLabel.text = self.item.primaryGenreName;
-    _artworkImageView.image = self.item.artwork100;
+    [_artworkImageView sd_setImageWithURL:[NSURL URLWithString:self.item.artworkUrl100]];
 }
 
 @end

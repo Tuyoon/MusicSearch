@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearcherProtocol.h"
 
 @interface HistoryDataSource : NSObject<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readonly) NSArray *items;
+- (instancetype)initWithSearcher:(id<SearcherProtocol>)searcher;
 - (void)updateHistory;
 
 @end
